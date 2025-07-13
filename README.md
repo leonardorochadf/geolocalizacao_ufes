@@ -4,8 +4,7 @@
 
 Aplicativo Streamlit para geocodificação automatizada de dados de estabelecimentos CNPJ do Espírito Santo, utilizando inteligência para construção de endereços e geocodificação com fallback por CEP.
 
-Link Streamlit: https://marcelo-ufes-geomapper.streamlit.app/
-
+Link Streamlit: https://geolocalizacaoufes.streamlit.app/
 
 ---
 
@@ -60,9 +59,9 @@ graph TD
     G --> I[🌍 Geocodificação]
     H --> I
     
-    I --> J{📍 Endereço Completo}
+    I --> J{📍 Endereço Completo (Nominatim/Photon/ArcGIS)}
     J -->|✅ Sucesso| K[✅ Coordenadas Obtidas]
-    J -->|❌ Falhou| L{📮 Tentativa CEP}
+    J -->|❌ Falhou| L{📮 Tentativa CEP (Nominatim/Photon/ArcGIS)}
     
     L -->|✅ Sucesso| M[🟠 Geocodificado por CEP]
     L -->|❌ Falhou| N[❌ Não Geocodificado]
@@ -97,8 +96,8 @@ graph TD
    - Adiciona localização geográfica padrão
 
 4. **Geocodificação Dupla**
-   - **Estratégia 1**: Endereço completo via Nominatim/OpenStreetMap
-   - **Estratégia 2**: Fallback por CEP se a primeira falhar
+   - **Estratégia 1**: Endereço completo via Nominatim, Photon e ArcGIS
+   - **Estratégia 2**: Fallback por CEP usando as mesmas APIs
    - Rate limiting: 1 requisição/segundo (evita bloqueios)
 
 5. **Visualização Interativa**
@@ -113,6 +112,14 @@ graph TD
    - **CSV**: Tabela com coordenadas
    - **GeoJSON**: Formato web padrão
    - **Shapefile**: Padrão GIS (.shp, .shx, .dbf, .prj)
+
+---
+
+## 🌐 APIs Utilizadas
+
+- **Nominatim (OpenStreetMap):** Geocodificação gratuita e aberta
+- **Photon:** Alternativa baseada em OpenStreetMap
+- **ArcGIS:** Geocodificação gratuita limitada
 
 ---
 
@@ -132,7 +139,7 @@ graph TD
 cd C:\Users\seu-usuario\projetos\
 
 # Navegue para o diretório
-cd marcelo_ufes
+cd geolocalizacao_ufes_streamlit
 ```
 
 #### 2. **Instalação das Dependências**
@@ -142,7 +149,7 @@ cd marcelo_ufes
 pip install -r requirements.txt
 ```
 
-**Lista de dependências principais:**
+**Principais dependências:**
 - `streamlit` - Framework web
 - `pandas` - Manipulação de dados
 - `folium` - Mapas interativos
@@ -226,9 +233,9 @@ id,endereco_completo,latitude,longitude,geocoding_method,geocoding_status
 - **Cache**: Dados carregados ficam em cache para reprocessamento
 
 ### 🌐 Geocodificação
-- **Provedor**: Nominatim (OpenStreetMap) - gratuito
+- **Provedores**: Nominatim, Photon, ArcGIS
 - **Timeout**: 10 segundos por requisição
-- **Retry**: Não há retry automático (para evitar sobrecarga)
+- **Retry**: Backoff exponencial automático
 
 ### 💾 Armazenamento
 - **Dados temporários**: Removidos após sessão
@@ -244,51 +251,26 @@ id,endereco_completo,latitude,longitude,geocoding_method,geocoding_status
 **1. Erro "File does not exist"**
 ```bash
 # Certifique-se de estar no diretório correto
-cd C:\Users\leona\OneDrive\Documentos\CursorIA\marcelo_ufes
+cd C:\Users\leona\OneDrive\Documentos\CursorIA\geolocalizacao_ufes_streamlit
 ```
 
 **2. Erro de módulos não encontrados**
 ```bash
-# Reinstale as dependências
-pip install --upgrade -r requirements.txt
+pip install -r requirements.txt
 ```
 
-**3. Taxa de geocodificação muito baixa**
-- Verifique a qualidade dos dados de entrada
-- Teste com uma amostra menor primeiro
-- Confirme conexão com internet
-
-**4. App muito lento**
-- Use modo de amostra para testes
-- Feche outras aplicações pesadas
-- Verifique velocidade da internet
-
-**5. Erro de memória**
-```bash
-# Para datasets muito grandes, processe em partes
-# Divida os arquivos Excel em arquivos menores
-```
-
-### 📝 Logs e Debug
-
-Para ver logs detalhados:
-```bash
-streamlit run app.py --logger.level=debug
-```
-
-Para verificar status do sistema:
-```bash
-# Verificar Python
-python --version
-
-# Verificar Streamlit
-streamlit --version
-
-# Listar pacotes instalados
-pip list
-```
-
+**3. Erro de permissão ao baixar arquivos**
+- Execute o navegador como administrador
+- Verifique permissões da pasta de destino
 
 ---
 
-**🎯 Resultado Final: Aplicativo completo para geocodificação eficiente de dados CNPJ do Espírito Santo com interface web moderna e exportação multi-formato.** 
+## 📢 Contato
+
+Dúvidas, sugestões ou bugs? Abra uma issue no GitHub ou envie e-mail para leonardorochadf@gmail.com
+
+---
+
+## 🏛️ UFES - Universidade Federal do Espírito Santo
+
+Sistema desenvolvido para apoio a projetos de pesquisa e extensão. 
