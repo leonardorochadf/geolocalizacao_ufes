@@ -47,35 +47,35 @@ Output: "RUA SANTOS NEVES, 104, MAUA, Espírito Santo, Brasil"
 
 ```mermaid
 graph TD
-    A[📁 Upload de Arquivos Excel] --> B[🔍 Análise da Estrutura]
-    B --> C[🏷️ Mapeamento de Colunas]
-    C --> D[🧹 Limpeza de Dados]
-    D --> E[🏗️ Construção de Endereços]
-    E --> F{🤔 Escolha do Modo}
+    A[Upload de Arquivos Excel] --> B[Análise da Estrutura]
+    B --> C[Mapeamento de Colunas]
+    C --> D[Limpeza de Dados]
+    D --> E[Construção de Endereços]
+    E --> F{Escolha do Modo}
     
-    F -->|Teste| G[🔬 Amostra 10-1000 registros]
-    F -->|Completo| H[📊 Todos os registros]
+    F -->|Teste| G[Amostra 10-1000 registros]
+    F -->|Completo| H[Todos os registros]
     
-    G --> I[🌍 Geocodificação]
+    G --> I[Geocodificação]
     H --> I
     
-    I --> J{📍 Endereço Completo (Nominatim/Photon/ArcGIS)}
-    J -->|✅ Sucesso| K[✅ Coordenadas Obtidas]
-    J -->|❌ Falhou| L{📮 Tentativa CEP (Nominatim/Photon/ArcGIS)}
+    I --> J{Endereço Completo}
+    J -->|Sucesso| K[Coordenadas Obtidas]
+    J -->|Falhou| L{Tentativa CEP}
     
-    L -->|✅ Sucesso| M[🟠 Geocodificado por CEP]
-    L -->|❌ Falhou| N[❌ Não Geocodificado]
+    L -->|Sucesso| M[Geocodificado por CEP]
+    L -->|Falhou| N[Não Geocodificado]
     
-    K --> O[🗺️ Visualização no Mapa]
+    K --> O[Visualização no Mapa]
     M --> O
     N --> O
     
-    O --> P[📊 Estatísticas Detalhadas]
-    P --> Q[📥 Downloads Múltiplos]
+    O --> P[Estatísticas Detalhadas]
+    P --> Q[Downloads Múltiplos]
     
-    Q --> R[📄 CSV]
-    Q --> S[🌍 GeoJSON]
-    Q --> T[📍 Shapefile]
+    Q --> R[CSV]
+    Q --> S[GeoJSON]
+    Q --> T[Shapefile]
 ```
 
 ### 📋 Etapas Detalhadas
