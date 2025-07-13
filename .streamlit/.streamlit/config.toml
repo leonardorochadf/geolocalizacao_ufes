@@ -1,0 +1,40 @@
+[server]
+port = 8000
+address = "0.0.0.0"
+maxUploadSize = 200
+enableCORS = false
+enableXsrfProtection = false
+enableWebsocketCompression = false
+
+[browser]
+gatherUsageStats = false
+showErrorDetails = false
+
+[global]
+developmentMode = false
+maxCachedMessageAge = 0
+minCachedMessageSize = 0
+
+[logger]
+level = "info"
+enableLogging = true
+
+[client]
+caching = true
+displayEnabled = true
+showErrorDetails = false
+
+[runner]
+magicEnabled = true
+installTracer = false
+fixMatplotlib = true
+postScriptGC = true
+fastReruns = true
+enforceSerializableSessionState = false
+
+[theme]
+primaryColor = "#1f77b4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+font = "sans serif" 
